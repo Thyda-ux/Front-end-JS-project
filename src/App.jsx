@@ -1,20 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import ExpenseForm from './ExpenseForm';
-import CategoryColumn from './CategoryColumn';
-import TotalDisplay from './TotalDisplay';
+import React, { useState } from 'react';
+import ExpenseForm from './components/ExpenseForm';
+import CategoryColumn from './components/CategoryColumn';
+import TotalDisplay from './components/TotalDisplay';
 import './styles/styles.css';
 
 const App = () => {
-  // Load data from localStorage on initial render
-  const [expenses, setExpenses] = useState(() => {
-    const savedExpenses = localStorage.getItem('expenses');
-    return savedExpenses ? JSON.parse(savedExpenses) : [];
-  });
-
-  // Save to localStorage whenever expenses change
-  useEffect(() => {
-    localStorage.setItem('expenses', JSON.stringify(expenses));
-  }, [expenses]);
+  const [expenses, setExpenses] = useState([]);
 
   // Add a new expense
   const handleAddExpense = (newExpense) => {
